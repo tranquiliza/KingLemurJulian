@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "KingLemurJulian.BackgroundHost": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ namespace KingLemurJulian.Core.Handlers
         private readonly IList<ICommandExecutor> commandExecutors;
         private readonly ILogger<CommandRequestHandler> logger;
 
-        public CommandRequestHandler(IList<ICommandExecutor> commandExecutors, ILogger<CommandRequestHandler> logger)
+        internal CommandRequestHandler(IList<ICommandExecutor> commandExecutors, ILogger<CommandRequestHandler> logger)
         {
             this.commandExecutors = commandExecutors;
             this.logger = logger;

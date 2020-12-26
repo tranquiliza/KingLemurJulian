@@ -14,9 +14,9 @@ namespace KingLemurJulian.Core.Handlers
             {
                 logger.LogInformation(
                 "Sent response from command {command}, to channel {channel}, requested by user {user}",
-                chatResponse.commandRequest.CommandText,
+                chatResponse.CommandRequest.CommandText,
                 chatResponse.Channel,
-                chatResponse.commandRequest.ChatMessage.DisplayName);
+                chatResponse.CommandRequest.ChatMessage.DisplayName);
             }
         }
 
@@ -33,7 +33,7 @@ namespace KingLemurJulian.Core.Handlers
         {
             LogFormat.LogResponse(logger, request);
 
-            chatMessageSender.SendMessage(request.commandRequest.ChatMessage.Channel, request.Response);
+            chatMessageSender.SendMessage(request.CommandRequest.ChatMessage.Channel, request.Response);
 
             return Unit.Task;
         }

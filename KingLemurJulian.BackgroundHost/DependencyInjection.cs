@@ -28,14 +28,14 @@ namespace KingLemurJulian.BackgroundHost
 
             var connectionString = configuration.GetRequiredValue<string>("ConnectionStrings:SqlDatabase");
 
-            services.RegisterBot();
+            services.RegisterBotCommands();
 
             services.AddSingleton<IBotRunner, BotRunner>();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             services.AddSingleton<IChannelRepository, ChannelRepository>(_ => new ChannelRepository(connectionString));
             services.AddHostedService<BotService>();
 
-            services.AddMediatR(typeof(DependencyInjection).GetTypeInfo().Assembly, typeof(ICommandExecutor).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(DependencyInjection).GetTypeInfo().Assembly, typeof(IBotRunner).GetTypeInfo().Assembly);
 
             var container = services.BuildServiceProvider();
 

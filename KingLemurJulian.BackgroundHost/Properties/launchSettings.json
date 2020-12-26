@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "KingLemurJulian.BackgroundHost": {
+    "Development": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

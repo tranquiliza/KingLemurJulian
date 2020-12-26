@@ -20,22 +20,22 @@ namespace KingLemurJulian.Core.Commands
             this.channelRepository = channelRepository;
         }
 
-        public override bool CanExecute(CommandEvent commandEvent)
+        public override bool CanExecute(CommandRequest commandRequest)
         {
-            if (!string.Equals("tranquiliza", commandEvent.ChatMessage.Username, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals("tranquiliza", commandRequest.ChatMessage.Username, StringComparison.OrdinalIgnoreCase))
                 return false;
 
-            return base.CanExecute(commandEvent);
+            return base.CanExecute(commandRequest);
         }
 
-        public override async Task Execute(CommandEvent command)
+        public override async Task Execute(CommandRequest commandRequest)
         {
-            var channelToJoin = command.Argument;
+            var channelToJoin = commandRequest.Argument;
             chatClient.JoinChannel(channelToJoin);
 
             await channelRepository.SaveChannel(channelToJoin).ConfigureAwait(false);
 
-            await mediator.Publish(new ChatResponseRequest(command, "Joined channel " + command.Argument));
+            await mediator.Send(new ChatResponseRequest(commandRequest, "Joined channel " + commandRequest.Argument)).ConfigureAwait(false);
         }
     }
 }

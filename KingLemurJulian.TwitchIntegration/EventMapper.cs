@@ -25,9 +25,9 @@ namespace KingLemurJulian.TwitchIntegration
             };
         }
 
-        public static CommandEvent MapToCommandEvent(this ChatCommand command)
+        public static CommandRequest MapToCommandRequest(this ChatCommand command)
         {
-            return new CommandEvent
+            return new CommandRequest
             {
                 Argument = command.ArgumentsAsString,
                 Arguments = command.ArgumentsAsList,

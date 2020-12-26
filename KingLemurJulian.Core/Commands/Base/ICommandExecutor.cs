@@ -6,7 +6,7 @@ namespace KingLemurJulian.Core.Commands
     public interface ICommandExecutor
     {
         string CommandName { get; }
-        bool CanExecute(CommandEvent commandEvent);
-        Task Execute(CommandEvent command);
+        bool CanExecute(CommandRequest commandRequest);
+        Task Execute(CommandRequest commandRequest);
     }
 }

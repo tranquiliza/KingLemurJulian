@@ -20,21 +20,21 @@ namespace KingLemurJulian.Core.Commands
 
         public override string CommandName => "Leave";
 
-        public override bool CanExecute(CommandEvent commandEvent)
+        public override bool CanExecute(CommandRequest commandRequest)
         {
-            if (!commandEvent.ChatMessage.IsBroadcaster || !string.Equals("tranquiliza", commandEvent.ChatMessage.Username, StringComparison.OrdinalIgnoreCase))
+            if (!commandRequest.ChatMessage.IsBroadcaster || !string.Equals("tranquiliza", commandRequest.ChatMessage.Username, StringComparison.OrdinalIgnoreCase))
                 return false;
 
-            return base.CanExecute(commandEvent);
+            return base.CanExecute(commandRequest);
         }
 
-        public override async Task Execute(CommandEvent command)
+        public override async Task Execute(CommandRequest command)
         {
             var channelName = command.Argument;
             if (string.IsNullOrEmpty(channelName))
                 channelName = command.ChatMessage.Channel;
 
-            await mediator.Publish(new ChatResponseRequest(command, "Leaving Channel. Goodbye!")).ConfigureAwait(false);
+            await mediator.Send(new ChatResponseRequest(command, "Leaving Channel. Goodbye!")).ConfigureAwait(false);
 
             chatClient.LeaveChannel(channelName);
 

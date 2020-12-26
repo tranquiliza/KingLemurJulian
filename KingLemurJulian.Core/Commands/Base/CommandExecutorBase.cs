@@ -8,9 +8,9 @@ namespace KingLemurJulian.Core.Commands
     {
         public virtual string CommandName { get; }
 
-        public virtual bool CanExecute(CommandEvent commandEvent)
-           => string.Equals(commandEvent.CommandText, CommandName, StringComparison.OrdinalIgnoreCase);
+        public virtual bool CanExecute(CommandRequest commandRequest)
+           => string.Equals(commandRequest.CommandText, CommandName, StringComparison.OrdinalIgnoreCase);
 
-        public abstract Task Execute(CommandEvent command);
+        public abstract Task Execute(CommandRequest command);
     }
 }

@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace KingLemurJulian.Core.Handlers
 {
-    public class ChatResponseRequestHandler : INotificationHandler<ChatResponseRequest>
+    public class ChatResponseRequestHandler : IRequestHandler<ChatResponseRequest, Unit>
     {
+        private static class LogFormat
+        {
+            internal static void LogResponse(ILogger logger, ChatResponseRequest chatResponse)
+            {
+                logger.LogInformation(
+                "Sent response from command {command}, to channel {channel}, requested by user {user}",
+                chatResponse.commandRequest.CommandText,
+                chatResponse.Channel,
+                chatResponse.commandRequest.ChatMessage.DisplayName);
+            }
+        }
+
         private readonly IChatMessageSender chatMessageSender;
         private readonly ILogger<ChatResponseRequestHandler> logger;
 
@@ -17,17 +29,13 @@ namespace KingLemurJulian.Core.Handlers
             this.logger = logger;
         }
 
-        public Task Handle(ChatResponseRequest chatResponse, CancellationToken cancellationToken)
+        public Task<Unit> Handle(ChatResponseRequest request, CancellationToken cancellationToken)
         {
-            logger.LogInformation(
-                "Sent response from command {command}, to channel {channel}, requested by user {user}",
-                chatResponse.CommandEvent.CommandText,
-                chatResponse.Channel,
-                chatResponse.CommandEvent.ChatMessage.DisplayName);
+            LogFormat.LogResponse(logger, request);
 
-            chatMessageSender.SendMessage(chatResponse.CommandEvent.ChatMessage.Channel, chatResponse.Response);
+            chatMessageSender.SendMessage(request.commandRequest.ChatMessage.Channel, request.Response);
 
-            return Task.CompletedTask;
+            return Unit.Task;
         }
     }
 }

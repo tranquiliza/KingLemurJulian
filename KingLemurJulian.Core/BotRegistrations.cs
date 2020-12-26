@@ -13,6 +13,7 @@ namespace KingLemurJulian.Core
             services.AddTransient<ICommandExecutor, LeaveCommand>();
 
             services.AddTransient<ICommandExecutor, C2FCommand>();
+            services.AddTransient<ICommandExecutor, Cm2FeetCommand>();
 
             services.AddTransient<IList<ICommandExecutor>>(x => new List<ICommandExecutor>(x.GetServices<ICommandExecutor>()));
         }

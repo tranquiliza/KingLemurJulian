@@ -17,7 +17,7 @@ namespace KingLemurJulian.TwitchIntegration
         private readonly TwitchClient client;
 
         public event Func<ChatMessageEvent, Task> OnMessageReceived;
-        public event Func<CommandEvent, Task> OnCommandReceived;
+        public event Func<CommandRequest, Task> OnCommandReceived;
 
         public TwitchChatClient(TwitchClientSettings twitchClientSettings, ILogger<TwitchChatClient> logger)
         {
@@ -31,7 +31,7 @@ namespace KingLemurJulian.TwitchIntegration
         private void Client_OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)
         {
             logger.LogInformation("Received command {arg}", e.Command.CommandText);
-            OnCommandReceived?.Invoke(e.Command.MapToCommandEvent());
+            OnCommandReceived?.Invoke(e.Command.MapToCommandRequest());
         }
 
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)

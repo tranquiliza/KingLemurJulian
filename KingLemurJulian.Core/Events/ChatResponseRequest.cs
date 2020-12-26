@@ -2,16 +2,16 @@
 
 namespace KingLemurJulian.Core.Events
 {
-    public class ChatResponseRequest : INotification
+    public class ChatResponseRequest : IRequest
     {
-        public CommandEvent CommandEvent { get; }
+        public CommandRequest commandRequest { get; }
         public string Channel { get; }
         public string Response { get; }
 
-        public ChatResponseRequest(CommandEvent command, string response)
+        public ChatResponseRequest(CommandRequest commandRequest, string response)
         {
-            CommandEvent = command;
-            Channel = command.ChatMessage.Channel;
+            this.commandRequest = commandRequest;
+            Channel = commandRequest.ChatMessage.Channel;
             Response = response;
         }
     }

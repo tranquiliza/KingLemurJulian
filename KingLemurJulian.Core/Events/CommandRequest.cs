@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KingLemurJulian.Core.Events
 {
-    public class CommandEvent : INotification
+    public class CommandRequest : IRequest
     {
         public ChatMessageEvent ChatMessage { get; set; }
         public List<string> Arguments { get; set; }

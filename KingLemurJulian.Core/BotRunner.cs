@@ -25,9 +25,9 @@ namespace KingLemurJulian.Core
             return Task.CompletedTask;
         }
 
-        private async Task ChatClient_OnCommandReceived(CommandEvent commandEvent)
+        private async Task ChatClient_OnCommandReceived(CommandRequest commandRequest)
         {
-            await mediator.Publish(commandEvent).ConfigureAwait(false);
+            await mediator.Send(commandRequest).ConfigureAwait(false);
         }
 
         public async Task InitializeAsync()

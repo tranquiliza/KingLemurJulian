@@ -7,7 +7,7 @@ namespace KingLemurJulian.Core
     public interface IChatClient : IDisposable
     {
         event Func<ChatMessageEvent, Task> OnMessageReceived;
-        event Func<CommandEvent, Task> OnCommandReceived;
+        event Func<CommandRequest, Task> OnCommandReceived;
 
         void Initialize();
         Task ConnectAsync();

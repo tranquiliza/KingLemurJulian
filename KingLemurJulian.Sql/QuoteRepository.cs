@@ -35,6 +35,7 @@ namespace KingLemurJulian.Sql
                                 reader.GetString("channel"),
                                 reader.GetString("quoteText"),
                                 reader.GetDateTime("creationTime"),
+                                reader.GetString("createdBy"),
                                 reader.GetBoolean("deleted"));
                         }
                     }
@@ -65,6 +66,7 @@ namespace KingLemurJulian.Sql
                             reader.GetString("channel"),
                             reader.GetString("quoteText"),
                             reader.GetDateTime("creationTime"),
+                            reader.GetString("createdBy"),
                             reader.GetBoolean("deleted")));
                     }
                 }
@@ -85,6 +87,7 @@ namespace KingLemurJulian.Sql
                 command.WithParameter("channel", quote.Channel)
                 .WithParameter("quoteText", quote.QuoteText)
                 .WithParameter("creationTime", quote.CreationTime)
+                .WithParameter("createdby", quote.CreatedBy)
                 .WithParameter("deleted", quote.Deleted);
 
                 await command.ExecuteNonQueryAsync().ConfigureAwait(false);

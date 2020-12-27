@@ -2,7 +2,7 @@
 	@id int
 AS
 BEGIN
-	SELECT TOP(1) [Id], [Channel], [QuoteText], [CreationTime], [Deleted] 
+	SELECT TOP(1) [Id], [Channel], [QuoteText], [CreationTime], [CreatedBy], [Deleted] 
 	FROM [Core].[Quotes]
 	WHERE [Id] = @id
 END

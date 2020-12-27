@@ -4,5 +4,6 @@
     [Channel] NVARCHAR(200) NOT NULL, 
     [QuoteText] NVARCHAR(1000) NOT NULL, 
     [CreationTime] DATETIME2(0) NOT NULL, 
-    [Deleted] BIT NOT NULL  
+    [CreatedBy] NVARCHAR(200) NOT NULL ,
+    [Deleted] BIT NOT NULL 
 )

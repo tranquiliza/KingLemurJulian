@@ -42,7 +42,7 @@ namespace KingLemurJulian.Core.Commands
 
         public override async Task Execute(CommandRequest commandRequest)
         {
-            var quote = new Quote(commandRequest.ChatMessage.Channel, commandRequest.Argument, dateTimeProvider.Now);
+            var quote = new Quote(commandRequest.ChatMessage.Channel, commandRequest.Argument, dateTimeProvider.Now, commandRequest.ChatMessage.DisplayName);
             var newQuoteId = await quoteRepository.SaveAsync(quote).ConfigureAwait(false);
             await mediator.Send(new ChatResponseRequest(commandRequest, $"Quote #{newQuoteId} added successfully!")).ConfigureAwait(false);
         }

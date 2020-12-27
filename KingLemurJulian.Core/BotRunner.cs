@@ -36,12 +36,10 @@ namespace KingLemurJulian.Core
             await chatClient.ConnectAsync().ConfigureAwait(false);
         }
 
-        public Task JoinChannels()
+        public async Task JoinChannels()
         {
-            foreach (var channelName in channelRepository.GetChannelsToJoin())
+            foreach (var channelName in await channelRepository.GetChannelsToJoin().ConfigureAwait(false))
                 chatClient.JoinChannel(channelName);
-
-            return Task.CompletedTask;
         }
 
         public void Dispose()

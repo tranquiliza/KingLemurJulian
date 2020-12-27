@@ -1,5 +1,4 @@
 ﻿using KingLemurJulian.Core;
-using KingLemurJulian.Core.Commands;
 using KingLemurJulian.Sql;
 using KingLemurJulian.TwitchIntegration;
 using MediatR;
@@ -7,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Net.Http;
 using System.Reflection;
 
 namespace KingLemurJulian.BackgroundHost
@@ -32,7 +32,9 @@ namespace KingLemurJulian.BackgroundHost
 
             services.AddSingleton<IBotRunner, BotRunner>();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-            services.AddSingleton<IChannelRepository, ChannelRepository>(_ => new ChannelRepository(connectionString));
+            services.AddSingleton<IChannelRepository, ChannelRepository>(serviceProvider => new ChannelRepository(connectionString, serviceProvider.GetRequiredService<ILogger<ChannelRepository>>()));
+            services.AddSingleton<IQuoteRepository, QuoteRepository>(serviceProvider => new QuoteRepository(connectionString, serviceProvider.GetRequiredService<ILogger<QuoteRepository>>()));
+            services.AddSingleton(_ => new HttpClient());
             services.AddHostedService<BotService>();
 
             services.AddMediatR(typeof(DependencyInjection).GetTypeInfo().Assembly, typeof(IBotRunner).GetTypeInfo().Assembly);

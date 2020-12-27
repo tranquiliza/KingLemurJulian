@@ -22,10 +22,13 @@ namespace KingLemurJulian.Core.Commands
 
         public override bool CanExecute(CommandRequest commandRequest)
         {
-            if (!commandRequest.ChatMessage.IsBroadcaster || !string.Equals("tranquiliza", commandRequest.ChatMessage.Username, StringComparison.OrdinalIgnoreCase))
-                return false;
+            if (commandRequest.ChatMessage.IsBroadcaster)
+                return base.CanExecute(commandRequest);
 
-            return base.CanExecute(commandRequest);
+            if (string.Equals("tranquiliza", commandRequest.ChatMessage.Username, StringComparison.OrdinalIgnoreCase))
+                return base.CanExecute(commandRequest);
+
+            return false;
         }
 
         public override async Task Execute(CommandRequest command)
@@ -34,7 +37,12 @@ namespace KingLemurJulian.Core.Commands
             if (string.IsNullOrEmpty(channelName))
                 channelName = command.ChatMessage.Channel;
 
-            await mediator.Send(new ChatResponseRequest(command, "Leaving Channel. Goodbye!")).ConfigureAwait(false);
+            var userExecuting = command.ChatMessage.Username;
+
+            if (!string.Equals(userExecuting, command.CommandText, StringComparison.OrdinalIgnoreCase) && !string.Equals(userExecuting, "tranquiliza", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            await mediator.Send(new ChatResponseRequest(command, $"Leaving {channelName}'s Channel. Goodbye!")).ConfigureAwait(false);
 
             chatClient.LeaveChannel(channelName);
 

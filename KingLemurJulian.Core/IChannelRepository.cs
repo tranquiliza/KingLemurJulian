@@ -5,7 +5,7 @@ namespace KingLemurJulian.Core
 {
     public interface IChannelRepository
     {
-        List<string> GetChannelsToJoin();
+        Task<List<string>> GetChannelsToJoin();
         Task SaveChannel(string channelName);
         Task DeleteChannel(string channelName);
     }

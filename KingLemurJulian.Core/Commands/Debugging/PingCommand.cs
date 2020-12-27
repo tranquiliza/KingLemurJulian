@@ -1,5 +1,6 @@
 ﻿using KingLemurJulian.Core.Events;
 using MediatR;
+using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -20,10 +21,13 @@ namespace KingLemurJulian.Core.Commands
 
         public override bool CanExecute(CommandRequest commandRequest)
         {
-            if (!commandRequest.ChatMessage.IsBroadcaster)
-                return false;
+            if (commandRequest.ChatMessage.IsBroadcaster)
+                return base.CanExecute(commandRequest);
 
-            return base.CanExecute(commandRequest);
+            if (string.Equals(commandRequest.ChatMessage.Username, "tranquiliza", StringComparison.OrdinalIgnoreCase))
+                return base.CanExecute(commandRequest);
+
+            return false;
         }
 
         public override async Task Execute(CommandRequest commandRequest)

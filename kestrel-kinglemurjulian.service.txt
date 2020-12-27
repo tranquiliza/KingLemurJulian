@@ -1,6 +1,6 @@
-scp D:\Development\Code\KingLemurJulian\KingLemurJulian.BackgroundHost\bin\Release\net5.0\publish\* root@178.62.97.244:/home/tranq/kinglemurjulian
+scp -r D:\Development\Code\KingLemurJulian\KingLemurJulian.BackgroundHost\bin\Release\net5.0\publish\* root@:/home/tranq/kinglemurjulian
 
-sudo nano /etc/systemd/system/kestrel-kinglemurjulian.service
+sudo nano /etc/systemd/system/kinglemurjulian.service
 
 [Unit]
 Description=KingLemurJulian
@@ -20,7 +20,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 [Install]
 WantedBy=multi-user.target
 
-sudo systemctl enable kestrel-kinglemurjulian.service
-sudo systemctl start kestrel-kinglemurjulian.service 
-sudo systemctl status kestrel-kinglemurjulian.service
-sudo systemctl disable kestrel-kinglemurjulian.service
+sudo systemctl enable kinglemurjulian.service
+sudo systemctl start kinglemurjulian.service 
+sudo systemctl status kinglemurjulian.service
+sudo systemctl disable kinglemurjulian.service

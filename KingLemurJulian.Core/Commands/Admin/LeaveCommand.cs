@@ -42,7 +42,7 @@ namespace KingLemurJulian.Core.Commands
             if (!string.Equals(userExecuting, command.CommandText, StringComparison.OrdinalIgnoreCase) && !string.Equals(userExecuting, "tranquiliza", StringComparison.OrdinalIgnoreCase))
                 return;
 
-            await mediator.Send(new ChatResponseRequest(command, $"Leaving {channelName}'s Channel. Goodbye!")).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(command, $"Leaving {channelName}'s Channel. Goodbye!")).ConfigureAwait(false);
 
             chatClient.LeaveChannel(channelName);
 

@@ -86,15 +86,15 @@ namespace KingLemurJulian.Core.Commands
             var validJoke = await GetValidJoke().ConfigureAwait(false);
             if (validJoke.IsTwoPart)
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, validJoke.Setup)).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, validJoke.Setup)).ConfigureAwait(false);
 
                 await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
 
-                await mediator.Send(new ChatResponseRequest(commandRequest, validJoke.Delivery)).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, validJoke.Delivery)).ConfigureAwait(false);
             }
             else
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, validJoke.Joke)).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, validJoke.Joke)).ConfigureAwait(false);
             }
 
             httpClient.DefaultRequestHeaders.Clear();

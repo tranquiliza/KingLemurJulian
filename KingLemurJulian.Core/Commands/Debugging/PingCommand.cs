@@ -34,7 +34,7 @@ namespace KingLemurJulian.Core.Commands
         {
             var responseText = $"PONG {commandRequest.ChatMessage.DisplayName}, from channel {commandRequest.ChatMessage.Channel} at {dateTimeProvider.Now.ToString("dd/MM/yyyy HH:mm:ss.ff", CultureInfo.InvariantCulture)} UTC";
 
-            var response = new ChatResponseRequest(commandRequest, responseText);
+            var response = new CommandResponseRequest(commandRequest, responseText);
 
             await mediator.Send(response).ConfigureAwait(false);
         }

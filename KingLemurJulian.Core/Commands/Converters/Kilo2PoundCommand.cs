@@ -21,12 +21,12 @@ namespace KingLemurJulian.Core.Commands
         {
             if (!double.TryParse(commandRequest.Arguments.FirstOrDefault(), out var number))
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, "Please give me a number")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, "Please give me a number")).ConfigureAwait(false);
                 return;
             }
 
             var result = number * 2.205;
-            await mediator.Send(new ChatResponseRequest(commandRequest, $"{number} kilograms converts to {result.ToInvarientStringWith2Decimals()} pounds")).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, $"{number} kilograms converts to {result.ToInvarientStringWith2Decimals()} pounds")).ConfigureAwait(false);
         }
     }
 }

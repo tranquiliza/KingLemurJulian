@@ -32,14 +32,14 @@ namespace KingLemurJulian.Core.Commands
                 if (quote == null)
                     return;
 
-                await mediator.Send(new ChatResponseRequest(commandRequest, quote.GetFormattedQuote())).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, quote.GetFormattedQuote())).ConfigureAwait(false);
                 return;
             }
 
             var allQuotes = await quoteRepository.GetQuotesAsync().ConfigureAwait(false);
             var quoteToSendIndex = rng.Next(0, allQuotes.Count);
 
-            await mediator.Send(new ChatResponseRequest(commandRequest, allQuotes[quoteToSendIndex].GetFormattedQuote())).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, allQuotes[quoteToSendIndex].GetFormattedQuote())).ConfigureAwait(false);
         }
     }
 }

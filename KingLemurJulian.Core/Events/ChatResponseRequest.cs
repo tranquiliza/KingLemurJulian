@@ -1,17 +1,20 @@
 ﻿using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace KingLemurJulian.Core.Events
 {
     public class ChatResponseRequest : IRequest
     {
-        public CommandRequest CommandRequest { get; }
-        public string Channel { get; }
+        public ChatMessageEvent ChatMessageEvent { get; }
         public string Response { get; }
+        public string Channel { get; }
 
-        public ChatResponseRequest(CommandRequest commandRequest, string response)
+        public ChatResponseRequest(ChatMessageEvent chatMessageEvent, string response)
         {
-            CommandRequest = commandRequest;
-            Channel = commandRequest.ChatMessage.Channel;
+            ChatMessageEvent = chatMessageEvent;
+            Channel = chatMessageEvent.Channel;
             Response = response;
         }
     }

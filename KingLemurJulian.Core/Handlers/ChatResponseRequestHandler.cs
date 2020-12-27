@@ -10,30 +10,30 @@ namespace KingLemurJulian.Core.Handlers
     {
         private static class LogFormat
         {
-            internal static void LogResponse(ILogger logger, ChatResponseRequest chatResponse)
+            internal static void LogResponse(ILogger logger, ChatResponseRequest chatResponseRequest)
             {
                 logger.LogInformation(
-                "Sent response from command {command}, to channel {channel}, requested by user {user}",
-                chatResponse.CommandRequest.CommandText,
-                chatResponse.Channel,
-                chatResponse.CommandRequest.ChatMessage.DisplayName);
+                    "Replied to {user} in channel {channel}, with response: {response}",
+                    chatResponseRequest.ChatMessageEvent.DisplayName,
+                    chatResponseRequest.Channel,
+                    chatResponseRequest.Response);
             }
         }
 
-        private readonly IChatMessageSender chatMessageSender;
         private readonly ILogger<ChatResponseRequestHandler> logger;
+        private readonly IChatMessageSender chatMessageSender;
 
-        public ChatResponseRequestHandler(IChatMessageSender chatMessageSender, ILogger<ChatResponseRequestHandler> logger)
+        public ChatResponseRequestHandler(ILogger<ChatResponseRequestHandler> logger, IChatMessageSender chatMessageSender)
         {
-            this.chatMessageSender = chatMessageSender;
             this.logger = logger;
+            this.chatMessageSender = chatMessageSender;
         }
 
         public Task<Unit> Handle(ChatResponseRequest request, CancellationToken cancellationToken)
         {
             LogFormat.LogResponse(logger, request);
 
-            chatMessageSender.SendMessage(request.CommandRequest.ChatMessage.Channel, request.Response);
+            chatMessageSender.SendMessage(request.Channel, request.Response);
 
             return Unit.Task;
         }

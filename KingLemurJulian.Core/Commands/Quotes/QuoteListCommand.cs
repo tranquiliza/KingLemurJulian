@@ -17,7 +17,7 @@ namespace KingLemurJulian.Core.Commands
 
         public override async Task Execute(CommandRequest commandRequest)
         {
-            await mediator.Send(new ChatResponseRequest(commandRequest, "Still to be implemented")).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, "Still to be implemented")).ConfigureAwait(false);
         }
     }
 }

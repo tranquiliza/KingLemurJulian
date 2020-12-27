@@ -22,7 +22,7 @@ namespace KingLemurJulian.Core.Commands
             var input = commandRequest.Argument;
             if (!double.TryParse(input, out var centimeters))
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, "Please give me a number")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, "Please give me a number")).ConfigureAwait(false);
                 return;
             }
 
@@ -30,7 +30,7 @@ namespace KingLemurJulian.Core.Commands
             var feet = Math.Floor(inches / 12);
             var leftOverInches = Math.Round(inches % 12);
 
-            await mediator.Send(new ChatResponseRequest(commandRequest, $"{commandRequest.Argument}cm converts to {feet}'{leftOverInches.ToInvarientStringWith2Decimals()}\"")).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, $"{commandRequest.Argument}cm converts to {feet}'{leftOverInches.ToInvarientStringWith2Decimals()}\"")).ConfigureAwait(false);
         }
     }
 }

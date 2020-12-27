@@ -34,6 +34,7 @@ namespace KingLemurJulian.BackgroundHost
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             services.AddSingleton<IChannelRepository, ChannelRepository>(serviceProvider => new ChannelRepository(connectionString, serviceProvider.GetRequiredService<ILogger<ChannelRepository>>()));
             services.AddSingleton<IQuoteRepository, QuoteRepository>(serviceProvider => new QuoteRepository(connectionString, serviceProvider.GetRequiredService<ILogger<QuoteRepository>>()));
+            services.AddSingleton<IEightBallResponseRepository, EightBallResponseRepository>(serviceProvider => new EightBallResponseRepository(connectionString, serviceProvider.GetRequiredService<ILogger<EightBallResponseRepository>>()));
             services.AddSingleton(_ => new HttpClient());
             services.AddHostedService<BotService>();
 

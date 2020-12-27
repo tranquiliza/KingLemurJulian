@@ -31,7 +31,7 @@ namespace KingLemurJulian.Core.Commands
                 var chance = rng.NextDouble();
                 if (chance > 0.75 && !string.IsNullOrWhiteSpace(commandAsString))
                 {
-                    await mediator.Send(new ChatResponseRequest(commandRequest, $"Haha, you think I will accept your gibberish?! You can be a {commandAsString}")).ConfigureAwait(false);
+                    await mediator.Send(new CommandResponseRequest(commandRequest, $"Haha, you think I will accept your gibberish?! You can be a {commandAsString}")).ConfigureAwait(false);
                     return;
                 }
 
@@ -41,7 +41,7 @@ namespace KingLemurJulian.Core.Commands
 
             async Task SendMessage(int roll)
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, $"You rolled: {roll} with the D{(number == 0 ? 20 : number)}")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, $"You rolled: {roll} with the D{(number == 0 ? 20 : number)}")).ConfigureAwait(false);
             }
         }
     }

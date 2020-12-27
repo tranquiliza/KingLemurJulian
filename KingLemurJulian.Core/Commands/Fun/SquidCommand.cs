@@ -41,7 +41,7 @@ namespace KingLemurJulian.Core.Commands
                 builder.Append(squidEmotes[emoteToUse]).Append(" ");
             }
 
-            await mediator.Send(new ChatResponseRequest(commandRequest, builder.ToString())).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, builder.ToString())).ConfigureAwait(false);
         }
     }
 }

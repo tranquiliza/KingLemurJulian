@@ -26,35 +26,35 @@ namespace KingLemurJulian.Core.Commands
 
             if (string.Equals(displayName, argumentWithoutAt, StringComparison.OrdinalIgnoreCase) || commandRequest.Argument.Length == 0)
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, "Of cause you love yourself... Don't make me...")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, "Of cause you love yourself... Don't make me...")).ConfigureAwait(false);
                 return;
             }
 
             if (string.Equals(argumentWithoutAt, "kingLemurJulian", StringComparison.OrdinalIgnoreCase))
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, "You can't love a robot LUL ")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, "You can't love a robot LUL ")).ConfigureAwait(false);
                 return;
             }
 
             var roll = rnd.NextDouble();
             if (roll < 0.15)
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, $"It's complicated between {displayName} and {argumentWithoutAt}")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, $"It's complicated between {displayName} and {argumentWithoutAt}")).ConfigureAwait(false);
                 return;
             }
             else if (roll < 0.25)
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, "Are you for real? LUL")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, "Are you for real? LUL")).ConfigureAwait(false);
                 return;
             }
             else if (roll < 0.35)
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, $"{displayName} and {argumentWithoutAt} were meant for each other! <3")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, $"{displayName} and {argumentWithoutAt} were meant for each other! <3")).ConfigureAwait(false);
                 return;
             }
 
             var percent = rnd.NextDouble();
-            await mediator.Send(new ChatResponseRequest(commandRequest, $"There is {Math.Round(percent * 100).ToString(CultureInfo.InvariantCulture)}% love between {displayName} and {argumentWithoutAt}")).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, $"There is {Math.Round(percent * 100).ToString(CultureInfo.InvariantCulture)}% love between {displayName} and {argumentWithoutAt}")).ConfigureAwait(false);
         }
     }
 }

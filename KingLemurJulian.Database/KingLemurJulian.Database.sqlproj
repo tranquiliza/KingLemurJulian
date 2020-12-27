@@ -56,5 +56,25 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="StoredProcedures\Quotes" />
+    <Folder Include="StoredProcedures\Channels" />
+    <Folder Include="Security\Schemas" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="Security" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Quotes.sql" />
+    <Build Include="Tables\Channels.sql" />
+    <Build Include="StoredProcedures\Quotes\GetLatestQuoteId.sql" />
+    <Build Include="StoredProcedures\Quotes\GetQuote.sql" />
+    <Build Include="StoredProcedures\Quotes\GetQuotes.sql" />
+    <Build Include="StoredProcedures\Quotes\InsertQuote.sql" />
+    <Build Include="StoredProcedures\Channels\DeleteChannel.sql" />
+    <Build Include="StoredProcedures\Channels\GetChannels.sql" />
+    <Build Include="StoredProcedures\Channels\UpsertChannel.sql" />
+    <Build Include="Security\Schemas\Core.sql" />
+    <Build Include="Tables\EightBallResponses.sql" />
+    <Build Include="Tables\IAmListeningResponses.sql" />
   </ItemGroup>
 </Project>

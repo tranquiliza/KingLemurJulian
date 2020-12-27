@@ -36,7 +36,7 @@ namespace KingLemurJulian.Core.Commands
             var json = await httpClient.GetStringAsync(fortuneApiUrl).ConfigureAwait(false);
             var result = JsonSerializer.Deserialize<FortuneResponse>(json);
 
-            await mediator.Send(new ChatResponseRequest(commandRequest, result.Fortune)).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, result.Fortune)).ConfigureAwait(false);
 
             httpClient.DefaultRequestHeaders.Clear();
         }

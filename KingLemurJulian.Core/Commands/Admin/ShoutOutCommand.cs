@@ -34,7 +34,7 @@ namespace KingLemurJulian.Core.Commands
 
         public override Task Execute(CommandRequest commandRequest)
         {
-            return mediator.Send(new ChatResponseRequest(commandRequest, $"If you havn't checked out this user already, what are you doing ?! https://twitch.tv/{commandRequest.Argument}/"));
+            return mediator.Send(new CommandResponseRequest(commandRequest, $"If you havn't checked out this user already, what are you doing ?! https://twitch.tv/{commandRequest.Argument}/"));
         }
     }
 }

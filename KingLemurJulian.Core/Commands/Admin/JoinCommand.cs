@@ -35,7 +35,7 @@ namespace KingLemurJulian.Core.Commands
 
             await channelRepository.SaveChannel(channelToJoin).ConfigureAwait(false);
 
-            await mediator.Send(new ChatResponseRequest(commandRequest, "Joined channel " + commandRequest.Argument)).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, "Joined channel " + commandRequest.Argument)).ConfigureAwait(false);
         }
     }
 }

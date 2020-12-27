@@ -22,7 +22,7 @@ namespace KingLemurJulian.Core.Commands
             var split = inputs.Split('\'');
             if (split.Length < 1)
             {
-                await mediator.Send(new ChatResponseRequest(commandRequest, "Please give me a number")).ConfigureAwait(false);
+                await mediator.Send(new CommandResponseRequest(commandRequest, "Please give me a number")).ConfigureAwait(false);
                 return;
             }
 
@@ -37,7 +37,7 @@ namespace KingLemurJulian.Core.Commands
             }
 
             var result = ((feet * 12) + inches) * 2.54;
-            await mediator.Send(new ChatResponseRequest(commandRequest, $"{commandRequest.Argument} converts to {result.ToInvarientStringWith2Decimals()} CM")).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, $"{commandRequest.Argument} converts to {result.ToInvarientStringWith2Decimals()} CM")).ConfigureAwait(false);
         }
     }
 }

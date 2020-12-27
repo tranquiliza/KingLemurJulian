@@ -14,8 +14,8 @@ namespace KingLemurJulian.Sql
 
         public QuoteRepository(string connectionString, ILogger<QuoteRepository> logger)
         {
-            this.logger = logger;
             sql = SqlAccessBase.Create(connectionString);
+            this.logger = logger;
         }
 
         public async Task<Quote> GetQuoteAsync(int id)

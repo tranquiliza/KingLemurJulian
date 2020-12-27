@@ -42,7 +42,7 @@ namespace KingLemurJulian.Core.Commands
             var json = await httpClient.GetStringAsync(baseUrlForDadJokes).ConfigureAwait(false);
             var result = JsonSerializer.Deserialize<DadJokeResponse>(json);
 
-            await mediator.Send(new ChatResponseRequest(commandRequest, result.Joke)).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, result.Joke)).ConfigureAwait(false);
 
             httpClient.DefaultRequestHeaders.Clear();
         }

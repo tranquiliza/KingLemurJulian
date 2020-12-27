@@ -20,9 +20,9 @@ namespace KingLemurJulian.Core
             chatClient.OnMessageReceived += ChatClient_OnMessageReceived;
         }
 
-        private Task ChatClient_OnMessageReceived(ChatMessageEvent chatMessageEvent)
+        private async Task ChatClient_OnMessageReceived(ChatMessageEvent chatMessageEvent)
         {
-            return Task.CompletedTask;
+            await mediator.Publish(chatMessageEvent).ConfigureAwait(false);
         }
 
         private async Task ChatClient_OnCommandReceived(CommandRequest commandRequest)

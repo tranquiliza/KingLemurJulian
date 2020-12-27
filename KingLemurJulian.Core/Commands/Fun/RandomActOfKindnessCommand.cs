@@ -33,7 +33,7 @@ namespace KingLemurJulian.Core.Commands
 
             var act = randomActsOfKindness[index];
 
-            await mediator.Send(new ChatResponseRequest(commandRequest, act)).ConfigureAwait(false);
+            await mediator.Send(new CommandResponseRequest(commandRequest, act)).ConfigureAwait(false);
         }
 
         private readonly IReadOnlyList<string> randomActsOfKindness = new List<string>()

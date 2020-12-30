@@ -30,7 +30,7 @@ namespace KingLemurJulian.TwitchIntegration
 
         private void Client_OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)
         {
-            logger.LogInformation("Received command {arg}", e.Command.CommandText);
+            logger.LogInformation("Received command {arg} from channel {channel}, by user {user} ", e.Command.CommandText, e.Command.ChatMessage.Channel, e.Command.ChatMessage.DisplayName);
             OnCommandReceived?.Invoke(e.Command.MapToCommandRequest());
         }
 

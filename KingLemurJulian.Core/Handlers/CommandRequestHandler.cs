@@ -24,7 +24,7 @@ namespace KingLemurJulian.Core.Handlers
         {
             var executer = commandExecutors.SingleOrDefault(x => x.CanExecute(request));
             if (executer == null)
-                logger.LogInformation("User {user} attempted to execute command: {commandName}", request.ChatMessage.DisplayName, request.CommandText);
+                logger.LogInformation("User {user} attempted to execute command: {commandName} in channel: {channel}", request.ChatMessage.DisplayName, request.CommandText, request.ChatMessage.Channel);
             else
                 await executer.Execute(request).ConfigureAwait(false);
 

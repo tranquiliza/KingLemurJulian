@@ -19,7 +19,7 @@ namespace KingLemurJulian.Core.Commands
 
         public override async Task Execute(CommandRequest commandRequest)
         {
-            if (double.TryParse(commandRequest.Arguments.FirstOrDefault(), out var number))
+            if (!double.TryParse(commandRequest.Arguments.FirstOrDefault(), out var number))
             {
                 await mediator.Send(new CommandResponseRequest(commandRequest, "Please give me a number")).ConfigureAwait(false);
                 return;

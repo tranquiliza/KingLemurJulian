@@ -41,10 +41,14 @@ namespace KingLemurJulian.Core
             services.AddTransient<ICommandExecutor, JokeCommand>();
             services.AddTransient<ICommandExecutor, FortuneCommand>();
 
-            //Quotes
+            // Quotes
             services.AddTransient<ICommandExecutor, QuoteCommand>();
             services.AddTransient<ICommandExecutor, AddQuoteCommand>();
             services.AddTransient<ICommandExecutor, QuoteListCommand>();
+
+            // Dynamic Commands
+            services.AddTransient<ICommandExecutor, AddCommand>();
+            services.AddTransient<ICommandExecutor, DynamicCommandExecutor>();
 
             services.AddTransient<IList<ICommandExecutor>>(x => new List<ICommandExecutor>(x.GetServices<ICommandExecutor>()));
         }

@@ -1,4 +1,4 @@
-scp -r D:\Development\Code\KingLemurJulian\KingLemurJulian.BackgroundHost\bin\Release\net5.0\publish\* root@:/home/tranq/kinglemurjulian
+scp -r D:\Development\Code\KingLemurJulian\KingLemurJulian.BackgroundHost\bin\Release\net5.0\publish\* root@167.71.50.26:/home/tranq/kinglemurjulian
 
 sudo nano /etc/systemd/system/kinglemurjulian.service
 

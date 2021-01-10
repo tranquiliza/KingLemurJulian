@@ -22,9 +22,9 @@ namespace KingLemurJulian.Core.Commands
         {
             var now = dateTimeProvider.Now;
 
-            var target = new DateTime(2022, 12, 31);
+            var target = new DateTime(2021, 12, 31);
 
-            var timeUntil = now - target;
+            var timeUntil = target - now;
 
             await mediator.Send(new CommandResponseRequest(commandRequest, $"Time until new year: {timeUntil.Days} days, {timeUntil.Hours} hours {timeUntil.Minutes} minutes and {timeUntil.Seconds} seconds")).ConfigureAwait(false);
         }

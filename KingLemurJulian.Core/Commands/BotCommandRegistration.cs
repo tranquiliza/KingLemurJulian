@@ -40,6 +40,7 @@ namespace KingLemurJulian.Core
             services.AddTransient<ICommandExecutor, DadJokeCommand>();
             services.AddTransient<ICommandExecutor, JokeCommand>();
             services.AddTransient<ICommandExecutor, FortuneCommand>();
+            services.AddTransient<ICommandExecutor, NewYearCommand>();
 
             // Quotes
             services.AddTransient<ICommandExecutor, QuoteCommand>();

@@ -22,7 +22,7 @@ namespace KingLemurJulian.Core.Commands
         {
             var now = dateTimeProvider.Now;
 
-            var target = new DateTime(2021, 12, 31);
+            var target = new DateTime(now.Year, 12, 31);
 
             var timeUntil = target - now;
 
